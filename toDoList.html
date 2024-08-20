@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>toDoList</title>
+        <style>
+            .result {
+                font-size: 60px;
+            }
+            .list li .deleteItem {
+                color: red;
+                display: inline-block;
+                margin-left: 5px;
+                cursor: pointer;
+            }
+            .list li.done {
+                color: green;
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+        <input class="input" placeholder="please enter the task"/>
+        <button onclick="add()">add</button>
+        <script>
+            function resetInput(taskInput) {
+                taskInput.value="";
+                taskInput.focus();
+            }
+            function add() {
+                var input = document.querySelector(".input");
+                if (input.value.trim().length==0) {
+                    alert("please fillout task field");
+                    resetInput(input);
+                    return;
+                }
+                if (input.value.trim().length<=3) {
+                    alert("please enter 3 char atleast");
+                    resetInput(input);
+                    return;
+                }
+                var li = document.createElement("LI");
+                li.addEventListener("click" , function (event){
+                        event.target.classList.toggle("done");
+                });
+                var deleteElement = document.createElement("SPAN");
+                li.innerHTML = input.value;
+                deleteElement.innerHTML = "x";
+                deleteElement.classList.add("deleteItem");
+                li.classList.add("item");
+                deleteElement.addEventListener("click" , function (event){
+                event.target.parentNode.remove()
+                });
+                li.appendChild(deleteElement);
+                li.classList.add("item");
+                document.querySelector(".list").appendChild(li);
+                resetInput(input);
+            }
+            function makeUl() {
+                var ul = document.createElement("UL");
+                ul.classList.add("list");
+                document.body.appendChild(ul);
+            }
+            makeUl ();
+            var input = document.querySelector(".input");
+            input.focus();
+            input.addEventListener("keydown",function (event) {
+                console.log(event);
+                if (event.key == "Enter"){
+                    add();
+                }
+            })
+            document.querySelector(".input").focus();
+        </script>
+    </body>
+</html>
