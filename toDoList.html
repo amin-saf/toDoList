@@ -2,24 +2,91 @@
     <head>
         <title>toDoList</title>
         <style>
-            .result {
-                font-size: 60px;
+            ::selection {
+                color: #fff;
+                background: #7065c0;
             }
-            .list li .deleteItem {
-                color: red;
-                display: inline-block;
-                margin-left: 5px;
+            body {
+                box-sizing: border-box;
+            }
+            .container {
+                background-image: url(31.webp);
+                width: 100%;
+                min-height: 100dvh;
+            }
+            .col {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .content-box {
+                width: 600px;
+                display: flex;
+                justify-content: center;
+                padding-top: 70px;
+            
+            }
+            .content-box .input {
+                font-size: 40px;
+                height: 85px;
+                width: 500px;
+                border-radius: 25px;
+            }
+            .content-box .btn {
+                background-color: rgba(145, 158, 171, 0.16);
+                border-radius: 29px;
+                color: #d5cadd;
+                height: 85px;
+                width: 110px;
+                font-size: 35px;
                 cursor: pointer;
             }
-            .list li.done {
-                color: green;
+            .task-box {
+                font-size: 30px;
+                width: 600px;
+            }
+            .task-box .list {
+                list-style: circle inside url("sqpurple.gif");
+            }
+            .item {
+                border: 6px outset rgb(118 85 175 / 68%);
+                border-radius: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100px;
+                background: #b9b0fb;
+                color: #002c8b;
+                padding-right: 40px;
+                padding-left: 25px;
+            }
+            .task-box .list li .deleteItem {
+                color: red;
+                display: inline-block;
+                margin-left: 30px;
+                cursor: pointer;
+            }
+            .task-box .list li {
+            
+                
+            }
+            .task-box .list li.done {
+                color: #7065c0;
                 text-decoration: line-through;
             }
+       
         </style>
     </head>
     <body>
-        <input class="input" placeholder="please enter the task"/>
-        <button onclick="add()">add</button>
+        <div class="container">
+            <div class="col">
+                <div class="content-box">
+                    <input class="input" placeholder="please enter the task"/>
+                    <button class="btn" onclick="add()">add</button>
+                </div>
+                <div class="task-box"></div>
+            </div>
+        </div>
         <script>
             function resetInput(taskInput) {
                 taskInput.value="";
@@ -32,7 +99,7 @@
                     resetInput(input);
                     return;
                 }
-                if (input.value.trim().length<=3) {
+                if (input.value.trim().length<3) {
                     alert("please enter 3 char atleast");
                     resetInput(input);
                     return;
@@ -57,7 +124,7 @@
             function makeUl() {
                 var ul = document.createElement("UL");
                 ul.classList.add("list");
-                document.body.appendChild(ul);
+                document.querySelector(".task-box").appendChild(ul);
             }
             makeUl ();
             var input = document.querySelector(".input");
