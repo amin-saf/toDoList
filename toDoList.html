@@ -1,18 +1,33 @@
 <html>
     <head>
         <title>toDoList</title>
+        <meta charset="utf-8"/>
+        <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400|Abril+Fatface:400,700" rel="stylesheet">
         <style>
             ::selection {
                 color: #fff;
                 background: #7065c0;
             }
+            * , *:before , *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            }
             body {
-                box-sizing: border-box;
+                font-family: "Mukta Mahee", arial, sans-serif;
+                overflow-x: hidden;
             }
             .container {
                 background-image: url(31.webp);
                 width: 100%;
                 min-height: 100dvh;
+            }
+            .title {
+                padding: 30px 100px 0 0px;
+                text-align: center;
+                font-family: "Abril Fatface", times, serif;
+                font-size: 35px;
+                color: #2b1838ad;
             }
             .col {
                 display: flex;
@@ -23,7 +38,7 @@
                 width: 600px;
                 display: flex;
                 justify-content: center;
-                padding-top: 70px;
+                padding-top: 20px;
             
             }
             .content-box .input {
@@ -31,6 +46,8 @@
                 height: 85px;
                 width: 500px;
                 border-radius: 25px;
+                text-align: center;
+                color:#7065c0;
             }
             .content-box .btn {
                 background-color: rgba(145, 158, 171, 0.16);
@@ -79,9 +96,10 @@
     </head>
     <body>
         <div class="container">
+            <div class="title"><h1>To Do List:</h1></div>
             <div class="col">
                 <div class="content-box">
-                    <input class="input" placeholder="please enter the task"/>
+                    <input class="input" placeholder="please enter the task here"/>
                     <button class="btn" onclick="add()">add</button>
                 </div>
                 <div class="task-box"></div>
@@ -130,7 +148,6 @@
             var input = document.querySelector(".input");
             input.focus();
             input.addEventListener("keydown",function (event) {
-                console.log(event);
                 if (event.key == "Enter"){
                     add();
                 }
